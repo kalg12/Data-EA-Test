@@ -1,13 +1,6 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 
 const Inicio = () => {
-
-  /* Realizamos fetch a http://localhost:4000/group y agregamos una opción de paginación para mostrar el siguiente objeto */
-  useEffect(() => {
-    fetch('http://localhost:4000/group')
-      .then(response => response.json())
-      .then(data => console.log(data.data))
-  }, [])
 
   return (
     <>

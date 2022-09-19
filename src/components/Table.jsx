@@ -39,7 +39,7 @@ const Table = () => {
       nombre: item.nombre,
       apellido: item.apellido,
       grupo: item.grupo,
-      estilo: newObjetc[index].dominante
+      estilo: newObjetc[index].dominante,
     }
   ))
 
