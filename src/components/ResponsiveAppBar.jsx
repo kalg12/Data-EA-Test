@@ -11,9 +11,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import {Link} from 'react-router-dom';
 
-const pages = ['Inicio', 'Resultados', 'Resultados por alumno'];
+const pages = ['Inicio', 'Resultados por alumno'];
 const settings = ['Perfil', 'Cuenta', 'Dashboard', 'Salir'];
+const link = {
+  'Inicio': '/',
+  'Resultados por alumno': '/resultados-por-estudiante',
+}
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -42,7 +47,6 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -87,7 +91,7 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  {page}
                 </MenuItem>
               ))}
             </Menu>
@@ -115,6 +119,8 @@ const ResponsiveAppBar = () => {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
+                component={Link}
+                to={link[page]}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -149,6 +155,7 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              
             </Menu>
           </Box>
         </Toolbar>
