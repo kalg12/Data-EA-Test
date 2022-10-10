@@ -1,5 +1,6 @@
 import React from 'react'
 import ChartGeneral from '../components/ChartGeneral'
+import EstadisticasGeneralesHome from '../components/EstadisticasGeneralesHome'
 import Inicio from '../components/Inicio'
 import Table from '../components/Table'
 
@@ -8,7 +9,7 @@ const Home = () => {
     <>
     <Inicio/>
     <Table/>
-    <h3>Estadísticas Generales</h3>
+    <EstadisticasGeneralesHome/>
     <ChartGeneral/>
     </>
   )

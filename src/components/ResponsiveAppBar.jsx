@@ -155,7 +155,6 @@ const ResponsiveAppBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-              
             </Menu>
           </Box>
         </Toolbar>
