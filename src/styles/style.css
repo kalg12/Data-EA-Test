@@ -1,3 +1,22 @@
 body {
-    font-family: "Roboto";
-  }
+  font-family: "Roboto";
+}
+
+table {
+  border: 1px solid #b3adad;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table th {
+  border: 1px solid #b3adad;
+  padding: 5px;
+  background: #1976d2;
+  color: #ffffff;
+}
+table td {
+  border: 1px solid #b3adad;
+  text-align: center;
+  padding: 5px;
+  background: #ffffff;
+  color: #313030;
+}
