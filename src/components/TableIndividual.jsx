@@ -1,62 +1,54 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 const TableIndividual = () => {
-  const [data, setData] = useState([])
-  const [currentCurp, setCurrentCurp] = useState(0)
+  const [data, setData] = useState([]);
+  const [individual, setIndividual] = useState(0);
+  const [currentCurp, setCurrentCurp] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost:4000/group')
-    .then(res => res.json())
-    .then(data => {
-        setData(data)
-        console.log(data)
-    })
-}, [])
+    fetch("http://localhost:4000/group")
+      .then((res) => res.json())
+      .then((dataApi) => {
+        return setData(dataApi)
+      });
+  }, []);
 
-const getArrayLength = (array) => {
-  console.log((data.data.length))
-}
+  const handleNext = () => {
+    if (currentCurp < data.data.length - 1) {
+      setIndividual(individual + 1);
+      setCurrentCurp(currentCurp + 1);
+    }
+  };
 
-const getCurrentCurp = () => {
-  console.log(data.data[currentCurp].curp)
-}
+  const handlePrev = () => {
+    if (currentCurp > 0) {
+      setIndividual(individual - 1);
+      setCurrentCurp(currentCurp - 1);
+    }
+  };
 
-const handleNext = () => {
-  if (currentCurp < data.data.length - 1) {
-    setCurrentCurp(currentCurp + 1)
-    console.log(data.data[currentCurp].curp)
-    return data.data[currentCurp].curp
-  }
-}
-
-const handlePrev = () => {
-  if (currentCurp > 0) {
-    setCurrentCurp(currentCurp - 1)
-    console.log(data.data[currentCurp].curp)
-    return data.data[currentCurp].curp
-  }
-}
-
-/* Hacemos fetch para http://localhost:4000/individual/${curp} para recuperar los registros por usuario que retornamos de handleNext y handlePrev */
-const handleIndividual = (curp) => {
-  fetch(`http://localhost:4000/individual/${curp}`)
-  .then(res => res.json())
-  .then(data => {
-      setData(data)
-      console.log(data)
-  })
-}
   return (
     <>
-    <h1>Tabla individual por alumno</h1>
-    {/* Colocamos dos botones para registro anterior y siguiente */}
-    <button onClick={getArrayLength}>Get array length</button>
-    <button onClick={getCurrentCurp}>Get current curp</button>
-    <button onClick={handleNext}>Next</button>
-    <button onClick={handlePrev}>Prev</button>
-    <button onClick={() => handleIndividual(data.data[currentCurp].curp)}>Individual</button>
+      <h1>Tabla individual por alumno</h1>
+      <h1>La curp actual es: {individual}</h1>
+      <Stack spacing={2} direction="row">
+        <Button variant="contained" onClick={() => handlePrev()}>
+          Atrás
+        </Button>
+        <Button variant="contained" onClick={() => handleNext()}>
+          Siguiente
+        </Button>
+      </Stack>
+      <h3>
+        Nombre del alumno: {data.data && data.data[currentCurp].nombre} {data.data && data.data[currentCurp].apellido}
+      </h3>
+      <h4>
+        Tipo de estilo:{" "}
+      </h4>
     </>
-  )
-}
+  );
+};
 
-export default TableIndividual
+export default TableIndividual;
