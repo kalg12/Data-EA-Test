@@ -8,8 +8,7 @@ const TableIndividual = () => {
   const [individualData, setIndividualData] = useState([]); // Guarda los datos de la API en un array
   const [currentCurp, setCurrentCurp] = useState(0); // Guarda la posición del array de la CURP seleccionada
   const [curp, setCurp] = useState(""); // Guarda la CURP seleccionada
-  const [answers, setAnswers] = useState([]); // Guarda las respuestas de la encuesta
-  const [isLoadind, setIsLoading] = useState(false); // Indica si se está cargando la información
+  const [answers, setAnswers] = useState({}); // Guarda las respuestas de la encuesta
 
   useEffect(() => {
     const getGrupal = async () => {
@@ -28,45 +27,26 @@ const TableIndividual = () => {
         const response = await fetch(`http://localhost:4000/individual/${curp}`);
         const data = await response.json();
         setIndividualData(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const getAnswers = async () => {
-      try {
-        const response = await fetch(`http://localhost:4000/individual/${curp}`);
-        const data = await response.json();
         setAnswers(data.answers);
       } catch (error) {
         console.log(error);
       }
     };
-
     getGrupal();
     getIndividual();
-    getAnswers();
-    setIsLoading(true);
-  }, [currentCurp, curp, isLoadind]);
+  }, [currentCurp, curp]);
 
   const handleNext = () => {
     if (currentCurp < data.data.length - 1) {
       setCurrentCurp(currentCurp + 1);
-      setCurp(data.data[currentCurp].curp)
     }
   };
 
   const handlePrev = () => {
     if (currentCurp > 0) {
       setCurrentCurp(currentCurp - 1);
-      setCurp(data.data[currentCurp].curp)
     }
   };
-
-
-  if (!isLoadind) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <>
@@ -97,6 +77,7 @@ const TableIndividual = () => {
 		</thead>
 		<tbody>
 			<td>1</td>
+      {/* <td>{console.log(answers[0].element1)}</td> */}
 		</tbody>
 	</table>
       <hr></hr>
